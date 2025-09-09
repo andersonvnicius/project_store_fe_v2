@@ -1,0 +1,172 @@
+/* Estilo Geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f4f0; /* Fundo neutro claro */
+  color: #3f3f3f; /* Texto em tom de marrom escuro */
+}
+
+/* Cabeçalho */ 
+header {
+  background-color: #354f52; /* Azul jeans escuro */
+  color: #f1f1f1; /* Texto branco */
+  padding: 50px 20px; /* Aumenta o espaçamento superior */
+  display: flex; /* Layout flexível do cabeçalho */
+  justify-content: center; /* Centraliza horizontalmente as colunas */
+  align-items: center; /* Centraliza verticalmente as colunas */
+}
+
+.header-content {
+  display: flex; /* Define layout das colunas em linha (lado a lado) */
+  justify-content: space-between; /* Espaço entre colunas */
+  align-items: center; /* Centraliza verticalmente o texto e o logo */
+  width: 100%; /* Ocupa toda a largura do cabeçalho */
+  max-width: 1200px; /* Limita a largura máxima do cabeçalho */
+  flex-wrap: nowrap; /* NÃO permite quebras de linha no mobile */
+}
+
+.header-text {
+  flex: 1; /* Título ocupa mais espaço */
+  text-align: left; /* Títulos alinhados à esquerda */
+  padding-right: 20px; /* Espaçamento entre o texto e a logo */
+}
+
+.header-text h1 {
+  font-size: 2.5em; /* Título maior para desktop */
+  margin: 0;
+}
+
+.header-text .subtitle {
+  font-size: 1.2em; /* Subtítulo menor */
+  margin: 5px 0 0;
+  color: #a8dadc; /* Azul claro para subtítulo */
+}
+
+.header-logo {
+  flex-shrink: 0; /* Garante que a logo mantenha tamanho fixo */
+}
+
+.header-logo img {
+  height: 70px; /* Tamanho fixo da logo para desktop */
+  max-width: 100%; /* Ajuste horizontal */
+  object-fit: contain; /* Mantém proporções adequadas */
+}
+
+/* Produtos */
+.product-list {
+  display: flex; /* Flex para organizar os produtos */
+  flex-wrap: wrap; /* Permite que eles "quebrem a linha" */
+  justify-content: center; /* Centraliza os produtos */
+  gap: 20px; /* Espaçamento entre os produtos */
+  padding: 20px;
+}
+
+.product-item {
+  /* background-color: #ffffff; Fundo branco para destaque */
+  border: none;
+  border-radius: 10px; /* Cantos arredondados */
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); Sombra leve */
+  width: 300px;
+  text-align: center;
+  padding: 10px 0;
+  transition: transform 0.3s, box-shadow 0.3s; /* Suaviza o hover */
+}
+
+.product-item:hover {
+  transform: scale(1.03); /* Leve aumento ao passar o mouse */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Efeito de realce na sombra */
+}
+
+.product-item img {
+  border-radius: 8px; /* Imagens com bordas arredondadas */
+  width: 75%; /* Largura responsiva para ocupar o espaço disponível */
+  height: calc(200px * 1.8); /* Altura proporcional */
+  object-fit: cover; /* Garante que a imagem preencha corretamente */
+}
+
+h2 {
+  color: #3f3f3f;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+p {
+  color: #5e503f; /* Texto descritivo em tom masculino/clean */
+  font-size: 0.9em;
+}
+
+.price {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #a67c52; /* Destaque no preço com tom caramelo */
+  margin-top: 5px;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #354f52; /* Fundo azul jeans escuro */
+  color: #f1f1f1; /* Texto branco */
+}
+
+/* Responsividade */
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  header {
+    padding: 40px 20px; /* Menos espaçamento lateral em telas pequenas */
+  }
+
+  .header-content {
+    flex-wrap: nowrap; /* Força que as colunas fiquem lado a lado */
+    justify-content: space-between; /* Espaço fixo entre o texto e a logo */
+    align-items: center; /* Centraliza ambos os elementos verticalmente */
+  }
+
+  .header-text {
+    flex: 1; /* O texto ainda ocupa mais espaço */
+    text-align: left; /* Mantém o alinhamento à esquerda do texto */
+    padding-right: 10px; /* Ajuste de espaçamento no mobile */
+  }
+
+  .header-logo img {
+    height: 50px; /* Reduz tamanho da logo em dispositivos pequenos */
+  }
+
+  .header-text h1 {
+    font-size: 1.8em; /* Reduz tamanho do título no mobile */
+  }
+
+  .header-text .subtitle {
+    font-size: 0.9em; /* Subtítulo menor */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 25px 20px; /* Reduz espaçamento no topo e laterais */
+  }
+
+  .header-content {
+    justify-content: space-between; /* Mantém espaçamento entre a logo e o texto */
+    flex-wrap: nowrap; /* Não permite quebras de linha */
+    align-items: center;
+  }
+
+  .header-text h1 {
+    font-size: 1.5em; /* Tamanho menor para espaços muito restritos */
+  }
+
+  .header-text .subtitle {
+    font-size: 0.8em; /* Subtítulo ainda menor para caber */
+  }
+
+  .header-logo img {
+    height: 40px; /* Logo ainda menor no smartphone */
+  }
+}
+
+
