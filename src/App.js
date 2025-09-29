@@ -3,14 +3,34 @@ import "./style.css";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
-  // Fetch products from the JSON file
+  // Use the environment variable for the API base URL
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  // Fetch products from the API on component mount
   useEffect(() => {
-    fetch("/products.json")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error loading products:", error));
-  }, []);
+    fetch(`${API_BASE_URL}/products`)
+      .then((response) => {
+        console.log(response); // Log the full response object
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success && data.data) {
+          // Set the product list from the "data" key in the API response
+          setProducts(data.data);
+        } else {
+          throw new Error("Unexpected API response format");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+        setError("Failed to fetch products. Try again later.");
+      });
+  }, [API_BASE_URL]);
 
   return (
     <div>
@@ -28,17 +48,23 @@ function App() {
 
       <main>
         <div className="product-list">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <div key={product.name} className="product-item">
-                <a href={product.link}>
-                  <img src={product.image} alt={product.name} />
-                </a>
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-                <p className="price">{product.price}</p>
-              </div>
-            ))
+          {error ? (
+            <p className="error-message">{error}</p>
+          ) : products.length > 0 ? (
+            products
+              .filter((product) => !product.is_deleted) // Exclude deleted products
+              .map((product) => (
+                <div key={product.item_id} className="product-item">
+                  <a href={product.link}  rel="noopener noreferrer">
+                    <img
+                      src={product.image}
+                      alt={product.description.replace(/<br>/g, " ")} // Strip HTML
+                    />
+                  </a>
+                  <h2>{product.description.replace(/<br>/g, " ")}</h2>
+                  <p className="price">{product.price}</p>
+                </div>
+              ))
           ) : (
             <p>Loading products...</p>
           )}
